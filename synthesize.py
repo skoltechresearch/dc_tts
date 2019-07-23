@@ -60,8 +60,10 @@ def synthesize():
         if not os.path.exists(hp.sampledir): os.makedirs(hp.sampledir)
         for i, mag in enumerate(Z):
             print("Working on file", i+1)
-            wav = spectrogram2wav(mag)
-            write(hp.sampledir + "/{}.wav".format(i+1), hp.sr, wav)
+            os.makedirs(hp.sampledir+"mags", exist_ok=True)
+            np.save(hp.sampledir + "mags/{}.npy".format(i+1), mag)
+            #wav = spectrogram2wav(mag)
+            #write(hp.sampledir + "/{}.wav".format(i+1), hp.sr, wav)
 
 if __name__ == '__main__':
     synthesize()
